@@ -11,6 +11,11 @@
 
 set $mod Mod4
 
+workspace "1:Shell" output LVDS1
+workspace "2:Work" output LVDS1
+workspace "3:File" output LVDS1
+workspace "4:Multimedia" output LVDS1
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -87,10 +92,10 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
+bindsym $mod+1 workspace 1:Shell
+bindsym $mod+2 workspace 2:Work
+bindsym $mod+3 workspace 3:File
+bindsym $mod+4 workspace 4:Multimedia
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
@@ -99,10 +104,10 @@ bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+1 move container to workspace 1:Shell
+bindsym $mod+Shift+2 move container to workspace 2:Work
+bindsym $mod+Shift+3 move container to workspace 3:File
+bindsym $mod+Shift+4 move container to workspace 4:Multimedia
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
