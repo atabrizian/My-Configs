@@ -1,29 +1,27 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+  export ZSH="/home/arash/.oh-my-zsh"
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-#ZSH_THEME="michelebologna"
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="ghost"
-#ZSH_THEME="darkblood"
 
-alias e="nano"
-alias _e="sudo nano"
-alias _i="sudo pacman -S"
-alias _u="sudo pacman -Syu"
-alias _en="sudo systemctl enable"
-alias _dis="sudo systemctl disable"
-alias _stt="sudo systemctl start"
-alias _sts="sudo systemctl status"
-alias _restt="sudo systemctl restart"
-alias _stp="sudo systemctl stop"
-alias dl="axel -a -n 4"
-alias fdl="proxychains axel -a -n 4"
+# Set list of themes to load
+# Setting this variable when ZSH_THEME=random
+# cause zsh load theme from this variable instead of
+# looking in ~/.oh-my-zsh/themes/
+# An empty array have no effect
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -60,14 +58,15 @@ alias fdl="proxychains axel -a -n 4"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(symfony2 archlinux colored-man colorize command-not-found composer git history history-substring-search last-working-dir grunt node npm)
+plugins=(git bundler cakephp3 brew bower command-not-found composer cp docker docker-compose git git-extras 
+git-flow history history-substring-search laravel5 last-working-dir npm postgres systemd tmux gulp grunt 
+sudo)
+
+source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
-
-source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -78,13 +77,12 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='mvim'
 # fi
-export EDITOR='nano'
 
 # Compilation flags
-export ARCHFLAGS="-arch x86_64"
+# export ARCHFLAGS="-arch x86_64"
 
 # ssh
-export SSH_KEY_PATH="~/.ssh/id_rsa"
+export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -95,14 +93,16 @@ export SSH_KEY_PATH="~/.ssh/id_rsa"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export PATH=${PATH}:/home/ghost/Programs/android-studio/sdk/tools/:/home/ghost/Programs/android-studio/sdk/platform-tools/:$HOME/.npm/bin
-
-case $- in *i*)
-  if [ -z "$TMUX" ]; then exec tmux; fi;;
-esac
-
-setxkbmap -model pc104 -layout us,ir -variant dvorak, -option grp:caps_toggle
-
-export PATH=${PATH}:~/.composer/vendor/bin:/home/ghost/.gem/ruby/2.2.0/bin
-
-
+alias pi="sudo pacman -S"
+alias pu="sudo pacman -Syu"
+alias e="nano"
+alias _e="sudo nano"
+alias se="sudo systemctl enable"
+alias ss="sudo systemctl start"
+alias sr="sudo systemctl restart"
+alias sst="sudo systemctl status"
+alias mu="make up"
+alias mud="make update"
+alias mp="make provision"
+alias md="make destroy"
+alias dl="aria2c -s 8"
