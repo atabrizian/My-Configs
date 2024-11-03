@@ -2,32 +2,39 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH="/home/arash/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="ghost"
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+# ZSH_THEME="robbyrussell"
+ZSH_THEME="crunch"
+#ZSH_THEME="jonathan"
 
-# Set list of themes to load
-# Setting this variable when ZSH_THEME=random
-# cause zsh load theme from this variable instead of
-# looking in ~/.oh-my-zsh/themes/
-# An empty array have no effect
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+# zstyle ':omz:update' frequency 13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -39,6 +46,9 @@ ZSH_THEME="ghost"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
 # COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -48,19 +58,22 @@ ZSH_THEME="ghost"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git bundler cakephp3 brew bower command-not-found composer cp docker docker-compose git git-extras 
-git-flow history history-substring-search laravel5 last-working-dir npm postgres systemd tmux gulp grunt 
-sudo)
+# plugins=(git)
+plugins=(git aws azure cp copypath dirhistory git-flow kops kubectl kubectx last-working-dir npm nvm node tmux colored-man-pages colorize command-not-found history history-substring-search macos minikube poetry sudo systemd terraform virtualenv vscode yarn docker)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -81,9 +94,6 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# ssh
-export SSH_KEY_PATH="~/.ssh/rsa_id"
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -93,16 +103,83 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias pi="sudo pacman -S"
-alias pu="sudo pacman -Syu"
 alias e="nano"
 alias _e="sudo nano"
-alias se="sudo systemctl enable"
-alias ss="sudo systemctl start"
-alias sr="sudo systemctl restart"
-alias sst="sudo systemctl status"
-alias mu="make up"
-alias mud="make update"
-alias mp="make provision"
-alias md="make destroy"
-alias dl="aria2c -s 8"
+alias aws-login="aws ecr get-login-password | docker login \
+--username AWS \
+--password-stdin 206094997682.dkr.ecr.us-east-1.amazonaws.com"
+
+# docker
+
+alias d="docker"
+alias ddo="docker down"
+alias dc="docker compose"
+alias dce="docker compose exec"
+alias ds="docker ps"
+alias dcs="docker compose ps"
+alias dcl="docker compose logs -f"
+alias dcre="docker compose restart"
+
+# npm 
+
+alias ni="npm install"
+alias nui="npm uninstall"
+alias nu="npm update" 
+alias ns="npm start" 
+alias nrd="npm run dev"
+
+# brew
+
+alias b="brew"
+alias bs="brew search"
+alias bu="brew update"
+alias bup="brew upgrade"
+alias bi="brew install"
+alias buni="brew uninstall"
+
+###
+
+export OPENAI_API_KEY=
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+eval "$(rbenv init - zsh)"
+
+export c53Gy=maxor # this is to fix the warning from docker compose
+export EDITOR="nano"
+
+#if command -v ngrok &>/dev/null; then
+#    eval "$(ngrok completion)"
+#fi
+
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+# export LDFLAGS="-L/opt/homebrew/opt/mysql-client/lib"                                                                           │
+# export CPPFLAGS="-I/opt/homebrew/opt/mysql-client/include"
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
+
+# Load Angular CLI autocompletion.
+# source <(ng completion script)
+
+alias brew='env PATH="${PATH//$(pyenv root)\/shims:/}" brew'
+
+export PATH=$PATH:/Users/arash/go/bin
+
